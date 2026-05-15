@@ -18,7 +18,7 @@ export default function HomePage() {
       <div className="relative z-10">
         <Navbar />
 
-        <div className="max-w-[1600px] mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
           <HeroSection />
           <CategorySection />
           <ProductGrid />

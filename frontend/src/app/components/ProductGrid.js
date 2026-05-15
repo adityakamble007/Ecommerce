@@ -3,7 +3,9 @@
 import Image from "next/image";
 
 async function getProducts() {
-  const res = await fetch("https://fakestoreapi.com/products?limit=5");
+  const res = await fetch("https://fakestoreapi.com/products?limit=5", {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");
@@ -16,10 +18,10 @@ export default async function ProductGrid() {
   const products = await getProducts();
 
   return (
-    <section className="py-24">
+    <section className="py-12 sm:py-16 lg:py-24">
 
-      <div className="flex justify-between items-center mb-12">
-        <h2 className="text-5xl font-black tracking-tight">
+      <div className="flex flex-wrap justify-between items-center mb-8 sm:mb-12 gap-4">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
           Trending Products
         </h2>
 
@@ -28,7 +30,7 @@ export default async function ProductGrid() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
         {products.map((product) => (
           <div
             key={product.id}
@@ -40,6 +42,7 @@ export default async function ProductGrid() {
                 alt={product.title}
                 fill
                 className="object-contain p-6 group-hover:scale-110 transition-all duration-700"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 20vw"
               />
             </div>
 
