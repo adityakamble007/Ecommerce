@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Heart, LayoutGrid, List, SlidersHorizontal } from "lucide-react";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Bar";
 // --- Data Fetching ---
 async function getProducts() {
   const res = await fetch("https://fakestoreapi.com/products");
